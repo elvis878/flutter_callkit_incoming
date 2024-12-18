@@ -2,7 +2,7 @@ group 'com.example.flutter_callkit_incoming'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.8.0'
+    ext.kotlin_version = '1.8.20'
     repositories {
         google()
         jcenter()
@@ -30,8 +30,19 @@ apply plugin: 'kotlin-android'
 android {
     compileSdk 35
     
-    kotlin {
-        jvmToolchain(17)
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    kotlinOptions {
+        jvmTarget = '17'
+    }
+
+    java {
+        toolchain {
+            languageVersion = JavaLanguageVersion.of(17)
+        }
     }
 
     if (project.android.hasProperty("namespace")) {
